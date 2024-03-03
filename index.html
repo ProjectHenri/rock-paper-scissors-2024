@@ -5,14 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
-    <script rel="script" src="./js/script.js"></script>
+    <script rel="script" src="./js/script.js" defer></script>
     <link rel="stylesheet" href="./css/styles.css">
 
 </head>
 
 <body>
 
-    <h1>A game of rock-paper-scissors</h1>
+    <div id="game-container">
+
+        <h1 id="title">A game of RPS</h1>
+        <p id="current-state">Choose an option to start playing the game</p>
+        
+        <div id="choices">
+            <button>R</button>
+            <button>P</button>
+            <button>S</button>
+        </div>
+
+        <div id="scores">
+            <p id="player">You: <span class="score">0</span></p>
+            <p id="computer">Computer: <span class="score">0</span></p>
+        </div>
+
+    </div>
 
 </body>
 
