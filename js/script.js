@@ -1,3 +1,28 @@
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => button.addEventListener("click", playRound));
+
+function playRound(playerSelection){
+
+    let playerChoice = playerSelection.target.dataset.selection;
+    let computerChoice = getComputerChoice();
+    let result="";
+
+    if (playerChoice === computerChoice) {
+        result = "tie";
+      } else if (
+        (playerChoice === "rock" && computerChoice === "paper") ||
+        (playerChoice === "paper" && computerChoice === "scissors") ||
+        (playerChoice === "scissors" && computerChoice === "rock")
+      ) {
+        result = "lose";
+      } else {
+        result = "win";
+      }
+
+}
+
+
 function getComputerChoice(){
 
     let choice;
