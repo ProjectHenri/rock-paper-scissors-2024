@@ -1,27 +1,9 @@
 const buttons = document.querySelectorAll("button");
+let currentState = document.querySelector("#current-state");
+let playerScore = document.querySelector("#player .score");
+let computerScore = document.querySelector("#computer .score");
 
 buttons.forEach(button => button.addEventListener("click", playRound));
-
-function playRound(playerSelection){
-
-    let playerChoice = playerSelection.target.dataset.selection;
-    let computerChoice = getComputerChoice();
-    let result="";
-
-    if (playerChoice === computerChoice) {
-        result = "tie";
-      } else if (
-        (playerChoice === "rock" && computerChoice === "paper") ||
-        (playerChoice === "paper" && computerChoice === "scissors") ||
-        (playerChoice === "scissors" && computerChoice === "rock")
-      ) {
-        result = "lose";
-      } else {
-        result = "win";
-      }
-
-}
-
 
 function getComputerChoice(){
 
@@ -44,6 +26,47 @@ function getComputerChoice(){
     }
 
     return choice;
+
+}
+
+function playRound(playerSelection){
+
+    let playerChoice = playerSelection.target.dataset.selection;
+    let computerChoice = getComputerChoice();
+    let result;
+
+    if (playerChoice === computerChoice) {
+        result = "tie";
+      } else if (
+        (playerChoice === "rock" && computerChoice === "paper") ||
+        (playerChoice === "paper" && computerChoice === "scissors") ||
+        (playerChoice === "scissors" && computerChoice === "rock")
+      ) {
+        result = "lose";
+      } else {
+        result = "win";
+      }
+
+      updateGame(result, playerChoice, computerChoice);
+
+}
+
+function updateGame(result, playerChoice, computerChoice){
+
+    switch(result){
+        case "tie":
+            currentState.textContent = `It's a tie, you both chose ${playerChoice}!`;
+            break;
+        case "lose":
+            currentState.textContent = `You lose, ${computerChoice} beats ${playerChoice}!`;
+            computerScore.textContent = ++computerScore.textContent;
+
+            break;
+        case "win":
+            currentState.textContent = `You win, ${playerChoice} beats ${computerChoice}!`;
+            playerScore.textContent = ++playerScore.textContent;
+
+    }
 
 }
 
