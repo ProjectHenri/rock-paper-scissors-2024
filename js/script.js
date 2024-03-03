@@ -4,6 +4,12 @@ let playerScore = document.querySelector("#player .score");
 let computerScore = document.querySelector("#computer .score");
 
 buttons.forEach(button => button.addEventListener("click", playRound));
+buttons.forEach(button => button.addEventListener('click', toggleState));
+
+function toggleState(e){
+    buttons.forEach(button => button.classList.remove('active'));
+    e.target.classList.add('active');
+}
 
 function getComputerChoice(){
 
@@ -66,6 +72,13 @@ function updateGame(result, playerChoice, computerChoice){
             currentState.textContent = `You win, ${playerChoice} beats ${computerChoice}!`;
             playerScore.textContent = ++playerScore.textContent;
 
+    }
+
+    if(playerScore.textContent === "5" || computerScore.textContent === "5"){
+        currentState.textContent = `Game over, you ${result} with a result of ${playerScore.textContent} to ${computerScore.textContent}! 
+        Pick an option to start a new game.`;
+        playerScore.textContent = 0;
+        computerScore.textContent = 0;
     }
 
 }
